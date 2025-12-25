@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Brutal Of Genesis Achivement</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0f19">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+      <div>
+        <h1>Gallery Achivement BOG</h1>
+        <div class="muted">Prestasi tournament Brutal Of Genesis</div>
+      </div>
+    </a>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="admin.html">Tambah</a>
+    </div>
+  </div>
+</header>
+
+
+<main class="container main">
+  <div class="toolbar">
+    <div class="filters">
+      <input id="q" class="input" placeholder="Cari tim/event/judul..." />
+      <select id="team" class="input"><option value="">Semua Tim</option></select>
+      <select id="tag" class="input"><option value="">Semua Tag</option></select>
+      <select id="year" class="input"><option value="">Semua Tahun</option></select>
+      <select id="perPage" class="input">
+        <option value="6">6/hal</option>
+        <option value="9" selected>9/hal</option>
+        <option value="12">12/hal</option>
+      </select>
+    </div>
+
+    <div class="pager">
+      <div class="muted" id="stats">0 item</div>
+      <div class="pager-controls">
+        <button class="btn" id="prev" type="button">Prev</button>
+        <span class="muted" id="pageInfo">1/1</span>
+        <button class="btn" id="next" type="button">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <section id="grid" class="grid"></section>
+</main>
+
+<!-- Splash / Intro Loading -->
+<div id="splash" class="splash">
+  <div class="splash-card">
+    <img src="assets/logo.png" alt="Logo" class="splash-logo">
+    <div class="splash-title">Brutal Of Genesis Achievement</div>
+    <div class="splash-sub">Memuat galeri sertifikat...</div>
+    <div class="splash-bar"><span></span></div>
+  </div>
+</div>
+
+
+<!-- Detail modal -->
+<div id="modal" class="modal hidden">
+  <div class="back" id="back"></div>
+  <div class="panel">
+    <div class="head">
+      <b id="mtitle">Detail</b>
+      <button class="btn" id="close" type="button">Tutup</button>
+    </div>
+
+    <div class="panel-body">
+      <div class="panel-image">
+        <img id="mimg" alt="Sertifikat" />
+      </div>
+
+      <div class="panel-info">
+        <div class="meta">
+          <span class="pill" id="mteam"></span>
+          <span class="pill pill--rank" id="mrank"></span>
+          <span class="pill pill--date" id="mdate"></span>
+        </div>
+
+        <div class="detail-line">
+          <div class="muted">Event</div>
+          <div><b id="mevent"></b></div>
+        </div>
+
+        <div class="detail-line">
+          <div class="muted">Catatan</div>
+          <div class="muted" id="mnote"></div>
+        </div>
+
+        <div class="detail-line">
+          <div class="muted">Tags</div>
+          <div id="mtags" class="tag-row"></div>
+        </div>
+
+        <a class="btn btn--pri" id="mopen" target="_blank" rel="noopener">Buka Gambar</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app-public.js"></script>
+</body>
+</html>

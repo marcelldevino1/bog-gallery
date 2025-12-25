@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin - Gallery Sertifikat</title>  
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0f19">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="container headerin">
+    <div>
+      <h1>Tambah Achivement</h1>
+      <div class="muted">Login untuk upload & kelola sertifikat</div>
+    </div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="index.html">← Kembali</a>
+      <button class="btn" id="logout">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main" style="display:grid;gap:14px">
+  <!-- Login -->
+  <section id="loginBox" style="border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.03)">
+  <h3 style="margin:0 0 10px">Login</h3>
+
+  <!-- pakai DIV saja, jangan form biar tidak auto-submit -->
+  <div style="display:grid;gap:10px;max-width:420px">
+    <input id="email" class="input" placeholder="Email" type="email">
+    <input id="password" class="input" placeholder="Password" type="password">
+
+    <!-- INI HARUS BUTTON + type button -->
+    <button type="button" class="btn btn--pri" id="loginBtn">Login</button>
+
+    <div class="muted" id="loginMsg"></div>
+  </div>
+</section>
+
+
+  <!-- Form tambah -->
+  <section id="formBox" class="hidden" style="border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.03)">
+    <h3 style="margin:0 0 10px">Tambah Sertifikat</h3>
+
+    <form id="form" style="display:grid;gap:10px">
+      <input id="title" class="input" placeholder="Judul" required>
+      <input id="event" class="input" placeholder="Event" required>
+      <input id="team" class="input" placeholder="Tim" required>
+      <input id="date" class="input" type="date" required>
+      <input id="rank" class="input" placeholder="Peringkat (opsional)">
+      <textarea id="note" class="input" rows="3" placeholder="Catatan (opsional)"></textarea>
+      <input id="image" class="input" type="file" accept="image/*" required>
+      <input id="tags" class="input" placeholder="Tags (pisahkan dengan koma) contoh: PMPL, Weekly, Scrim">
+      <button class="btn btn--pri" type="submit">Upload & Simpan</button>
+      <div class="muted" id="msg"></div>
+    </form>
+  </section>
+
+  <!-- List sederhana -->
+  <section id="listBox" class="hidden" style="border:1px solid var(--line);border-radius:16px;padding:14px;background:rgba(255,255,255,.03)">
+    <h3 style="margin:0 0 10px">Data Sertifikat</h3>
+    <div class="muted" id="listMsg"></div>
+    <div id="list" style="display:grid;gap:10px;margin-top:10px"></div>
+  </section>
+</main>
+
+<script type="module" src="app-admin.js"></script>
+</body>
+</html>

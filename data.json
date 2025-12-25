@@ -1,0 +1,22 @@
+[
+  {
+    "id": "cert-01",
+    "title": "Juara 1 Weekly Scrim",
+    "event": "PUBG Mobile Community Cup",
+    "team": "BOG Rise Up",
+    "date": "2025-12-10",
+    "rank": "Juara 1",
+    "note": "Total kill 42",
+    "image": "/certs/cert-01.jpg"
+  },
+  {
+    "id": "cert-02",
+    "title": "Top 3 Final",
+    "event": "Tournament XYZ Season 2",
+    "team": "BOG TryHard",
+    "date": "2025-11-02",
+    "rank": "Top 3",
+    "note": "",
+    "image": "/certs/cert-02.png"
+  }
+]
