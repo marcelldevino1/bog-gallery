@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Jadwal Tournament</title>
+  <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+      <div>
+        <h1>Admin Jadwal Tournament</h1>
+        <div class="muted">Tambah / Edit / Hapus jadwal</div>
+      </div>
+    </a>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="schedule.html">Lihat Kalender</a>
+      <button class="btn" id="logout" type="button">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <!-- Login -->
+  <section id="loginBox">
+    <div class="toolbar" style="justify-content:flex-start">
+      <div style="display:grid;gap:10px;max-width:420px;width:100%">
+        <b>Login Admin</b>
+        <input id="email" class="input" placeholder="Email" type="email">
+        <input id="password" class="input" placeholder="Password" type="password">
+        <button id="loginBtn" class="btn" type="button">Login</button>
+        <div class="muted" id="loginMsg"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Form -->
+  <section id="formBox" class="hidden">
+    <div class="toolbar" style="justify-content:flex-start">
+      <form id="form" style="display:grid;gap:10px;width:min(720px,100%)">
+        <b id="formTitle">Tambah Jadwal</b>
+
+        <input id="title" class="input" placeholder="Nama tournament" required>
+        <input id="kind" class="input" placeholder="Jenis tournament (Scrim/Liga/Qualif/FastTour...)" required>
+        <input id="organizer" class="input" placeholder="Penyelenggara (opsional)">
+
+        <input id="teams" class="input" placeholder="Tim (pisah koma) contoh: BOG 7SAVAGE, BOG Rise Up" required>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+          <input id="tour_date" class="input" type="date" required>
+          <input id="start_time" class="input" type="time" required>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:6px">
+  <label for="fee" style="font-size:14px;font-weight:500;">
+    Biaya Pendaftaran
+  </label>
+
+  <input
+    id="fee"
+    class="input"
+    type="number"
+    placeholder="Masukkan angka"
+    required
+  >
+</div>
+
+<div style="display:flex;flex-direction:column;gap:6px">
+  <label for="prizepool" style="font-size:14px;font-weight:500;">
+    PrizePool
+  </label>
+
+  <input
+    id="prizepool"
+    class="input"
+    type="number"
+    placeholder="Masukkan angka"
+    required
+  >
+</div>
+
+
+        <textarea id="note" class="input" placeholder="Link Grup Tournya (kalau belum ada nanti aja)" rows="3"></textarea>
+
+        <div style="display:grid;gap:8px">
+          <div class="muted">Poster (opsional)</div>
+          <input id="image" class="input" type="file" accept="image/*">
+        </div>
+
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn--pri" type="submit" id="submitBtn">Simpan</button>
+          <button class="btn" type="button" id="cancelEdit">Reset isi form</button>
+        </div>
+
+        <div class="muted" id="msg"></div>
+      </form>
+    </div>
+  </section>
+
+  <!-- List -->
+  <section id="listBox" class="hidden">
+    <div class="toolbar" style="justify-content:space-between">
+      <b>Data Jadwal</b>
+      <div class="muted" id="listMsg"></div>
+    </div>
+    <div id="list" style="display:grid;gap:12px"></div>
+  </section>
+</main>
+
+<script type="module" src="app-schedule-admin.js"></script>
+</body>
+</html>

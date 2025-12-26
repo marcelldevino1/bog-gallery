@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jadwal Tournament - BOG</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="schedule.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+      <div>
+        <h1>Jadwal Tournament</h1>
+        <div class="muted">Kalender kegiatan & event tim</div>
+      </div>
+    </a>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="index.html">Gallery</a>
+      <a class="btn" href="admin-schedule.html">Tambah Jadwal</a>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <div class="cal-head">
+    <button class="btn" id="prevMonth" type="button">◀</button>
+
+    <div class="cal-title">
+      <div class="cal-month" id="monthLabel">—</div>
+      <div class="cal-controls">
+        <select class="input" id="monthSelect"></select>
+        <select class="input" id="yearSelect"></select>
+      </div>
+    </div>
+
+    <button class="btn" id="nextMonth" type="button">▶</button>
+  </div>
+
+  <div class="cal-legend">
+    <span class="dot dot--has"></span> Ada tournament
+    <span class="dot dot--today"></span> Hari ini
+  </div>
+
+<div class="calendar">
+  <!-- Header hari -->
+  <div class="calendar-head">
+    <div>Min</div>
+    <div>Sen</div>
+    <div>Sel</div>
+    <div>Rab</div>
+    <div>Kam</div>
+    <div>Jum</div>
+    <div>Sab</div>
+  </div>
+
+  <!-- Grid tanggal -->
+  <div class="calendar-grid" id="calendarGrid">
+    <!-- JS akan isi <div class="day"> -->
+  </div>
+</div>
+</main>
+
+<!-- Modal detail -->
+<div id="tModal" class="modal hidden">
+  <div class="back" id="tBack"></div>
+  <div class="panel">
+    <div class="head">
+      <b id="tTitle">Detail</b>
+      <button class="btn" id="tClose" type="button">Tutup</button>
+    </div>
+    <div class="t-body">
+      <div class="muted" id="tDateLine"></div>
+      <div id="tList" class="t-list"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module" src="app-schedule-public.js"></script>
+</body>
+</html>
