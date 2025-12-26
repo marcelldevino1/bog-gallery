@@ -338,3 +338,29 @@
   opacity: .35;
   cursor: default;
 }
+
+/* Wrapper agar kalender bisa di-swipe kiri-kanan di HP */
+.calendar-scroll{
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 10px; /* biar scroll bar ga nutup */
+}
+
+/* Biar bisa “dipaksa” lebih lebar dari layar */
+.calendar{
+  min-width: 920px; /* kamu bisa adjust (860-980) */
+}
+
+/* Opsional: bikin scroll bar lebih halus */
+.calendar-scroll::-webkit-scrollbar{
+  height: 8px;
+}
+.calendar-scroll::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,.12);
+  border-radius: 999px;
+}
+.calendar-scroll::-webkit-scrollbar-track{
+  background: rgba(255,255,255,.05);
+}
