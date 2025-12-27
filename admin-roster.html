@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tambah Roster - BOG</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="roster.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="roster.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+      <div>
+        <h1>Tambah Roster</h1>
+        <div class="muted">Tambah, edit, hapus player</div>
+      </div>
+    </a>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="roster.html">Lihat Toster</a>
+      <a class="btn" href="index.html">Gallery</a>
+      <button class="btn" id="logout" type="button">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+
+  <!-- LOGIN -->
+  <div id="loginBox" class="card">
+    <h3 style="margin:0 0 10px 0">Login</h3>
+    <div class="muted" style="margin-bottom:12px">Login admin Supabase</div>
+
+    <div style="display:grid;gap:10px;max-width:520px">
+      <input id="email" class="input" placeholder="Email admin" />
+      <input id="password" class="input" type="password" placeholder="Password" />
+      <button class="btn btn--pri" id="loginBtn" type="button">Login</button>
+      <div class="muted" id="loginMsg"></div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div id="formBox" class="card hidden">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+      <h3 id="formTitle" style="margin:0">Tambah Player</h3>
+      <button class="btn" id="cancelEdit" type="button">Batal Edit</button>
+    </div>
+
+    <form id="form" style="margin-top:12px;display:grid;gap:10px;max-width:780px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <input id="name" class="input" placeholder="Nama Lengkap" required>
+        <input id="age" class="input" placeholder="Umur (angka)" required>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <input id="team" class="input" placeholder="Tim (wajib) contoh: BOG 7SAVAGE" required>
+        <input id="nickname" class="input" placeholder="Nickname">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <input id="pubg_id" class="input" placeholder="ID PUBG">
+        <input id="manager" class="input" placeholder="Pengurus">
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+        <select id="status" class="input">
+          <option value="Active">Member</option>
+          <option value="Trial">Trial</option>
+        </select>
+        <button class="btn btn--pri" id="submitBtn" type="submit">Simpan</button>
+      </div>
+
+      <div class="muted" id="msg"></div>
+    </form>
+  </div>
+
+  <!-- LIST -->
+  <div id="listBox" class="card hidden">
+    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
+      <h3 style="margin:0">Data Player</h3>
+      <div class="muted" id="listMsg">0 item</div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:12px">
+      <table class="roster">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Umur</th>
+            <th>Tim</th>
+            <th>Nickname</th>
+            <th>ID PUBG</th>
+            <th>Pengurus</th>
+            <th>Status</th>
+            <th style="width:180px">Aksi</th>
+          </tr>
+        </thead>
+        <tbody id="tbodyAdmin">
+          <tr><td colspan="8" class="muted" style="padding:14px">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>
+
+<script type="module" src="app-roster-admin.js"></script>
+</body>
+</html>

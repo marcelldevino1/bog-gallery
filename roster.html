@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roster Player - BOG</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="roster.css">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+      <div>
+        <h1>Roster Player</h1>
+        <div class="muted">Daftar player semua tim</div>
+      </div>
+    </a>
+
+    <div style="display:flex;gap:10px;flex-wrap:wrap">
+      <a class="btn" href="index.html">Gallery</a>
+      <a class="btn" href="schedule.html">Jadwal</a>
+      <a class="btn" href="admin-roster.html">Tambah Roster</a>
+    </div>
+  </div>
+</header>
+
+<main class="container main">
+  <div class="toolbar">
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <input id="q" class="input" placeholder="Cari nama/nickname/id/pengurus..." />
+      <select id="team" class="input"><option value="">Semua Tim</option></select>
+      <select id="status" class="input">
+        <option value="">Semua Status</option>
+        <option value="Active">Active</option>
+        <option value="Trial">Trial</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+      <select id="perPage" class="input">
+        <option value="10">10/hal</option>
+        <option value="20" selected>20/hal</option>
+        <option value="50">50/hal</option>
+      </select>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="muted" id="stats">0 item</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="btn" id="prev">Prev</button>
+        <span class="muted" id="pageInfo">1/1</span>
+        <button class="btn" id="next">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table class="roster">
+      <thead>
+        <tr>
+          <th>Nama</th>
+          <th>Umur</th>
+          <th>Tim</th>
+          <th>Nickname</th>
+          <th>ID PUBG</th>
+          <th>Pengurus</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        <tr><td colspan="7" class="muted" style="padding:14px">Loading...</td></tr>
+      </tbody>
+    </table>
+  </div>
+</main>
+
+<script type="module" src="app-roster-public.js"></script>
+</body>
+</html>
