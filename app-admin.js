@@ -86,8 +86,8 @@ async function refreshList() {
         </div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn" data-edit="${i.id}">Edit</button>
-        <button class="btn" data-del="${i.id}">Hapus</button>
+        <button class="btn btn--sm btn--edit" data-edit="${i.id}">Edit</button>
+        <button class="btn btn--sm btn--danger" data-del="${i.id}">Hapus</button>
       </div>
     </div>
   `

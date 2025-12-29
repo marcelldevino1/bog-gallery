@@ -99,6 +99,39 @@ header{
 }
 .btn:disabled{ opacity:.55; cursor:not-allowed; transform:none; }
 
+/* Small action buttons (Edit / Hapus) */
+.btn--sm{
+  padding:6px 8px;
+  font-size:13px;
+  border-radius:8px;
+  gap:6px;
+  min-width:56px;
+}
+
+.btn--edit{
+  border-color: rgba(59,130,246,.28);
+  background: rgba(59,130,246,.06);
+  color: #93c5fd;
+}
+.btn--edit:hover{
+  background: rgba(59,130,246,.12);
+  border-color: rgba(59,130,246,.4);
+  transform: translateY(-1px);
+}
+.btn--edit::before{ content: "✎"; margin-right:6px; font-size:12px; opacity:.95; }
+
+.btn--danger{
+  border-color: rgba(239,68,68,.28);
+  background: rgba(239,68,68,.04);
+  color: #fda4af;
+}
+.btn--danger:hover{
+  background: rgba(239,68,68,.08);
+  border-color: rgba(239,68,68,.4);
+  transform: translateY(-1px);
+}
+.btn--danger::before{ content: "🗑"; margin-right:6px; font-size:12px; opacity:.95; }
+
 /* ===== Main ===== */
 .main{ padding:18px 0 30px; }
 

@@ -3,112 +3,106 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tambah Roster - BOG</title>
-
+  <title>Admin Roster - BOG</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="roster.css">
-
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  
+
+  <style>
+    .card{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:18px;padding:14px}
+    .stack{display:flex;flex-direction:column;gap:10px}
+    .row{display:grid;gap:10px;grid-template-columns:1fr 1fr}
+    @media (max-width:720px){.row{grid-template-columns:1fr}}
+    .tableWrap{overflow:auto;border-radius:16px;border:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;min-width:1000px}
+    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.07)}
+    th{font-size:12px;color:rgba(255,255,255,.7)}
+    .hidden{display:none!important}
+  </style>
 </head>
+
 <body>
 
 <header>
   <div class="container headerin">
-    <a class="brand" href="roster.html">
+    <a class="brand" href="index.html">
       <img src="assets/logo.png" class="logo" alt="Logo BOG">
       <div>
-        <h1>Tambah Roster</h1>
-        <div class="muted">Tambah, edit, hapus player</div>
+        <h1>Tambah Roster BOG</h1>
+        <div class="muted">Tambah Roster</div>
       </div>
-    </a>
-
     <div style="display:flex;gap:10px;flex-wrap:wrap">
-      <a class="btn" href="roster.html">Lihat Toster</a>
-      <a class="btn" href="index.html">Gallery</a>
-      <button class="btn" id="logout" type="button">Logout</button>
+      <a class="btn" href="roster.html">← Kembali</a>
+      <button class="btn" id="logout">Logout</button>
     </div>
   </div>
 </header>
 
-<main class="container main">
+<main class="container main" style="display:grid;gap:14px">
 
-  <!-- LOGIN -->
-  <div id="loginBox" class="card">
-    <h3 style="margin:0 0 10px 0">Login</h3>
-    <div class="muted" style="margin-bottom:12px">Login admin Supabase</div>
-
-    <div style="display:grid;gap:10px;max-width:520px">
-      <input id="email" class="input" placeholder="Email admin" />
-      <input id="password" class="input" type="password" placeholder="Password" />
-      <button class="btn btn--pri" id="loginBtn" type="button">Login</button>
-      <div class="muted" id="loginMsg"></div>
-    </div>
+<!-- LOGIN -->
+<section id="loginBox" class="card">
+  <h2>Login Admin</h2>
+  <div class="stack">
+    <input id="email" class="input" type="email" placeholder="Email">
+    <input id="password" class="input" type="password" placeholder="Password">
+    <button class="btn btn--pri" id="loginBtn">Login</button>
+    <div id="loginMsg" class="muted"></div>
   </div>
+</section>
 
-  <!-- FORM -->
-  <div id="formBox" class="card hidden">
-    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
-      <h3 id="formTitle" style="margin:0">Tambah Player</h3>
-      <button class="btn" id="cancelEdit" type="button">Batal Edit</button>
+<!-- FORM -->
+<section id="formBox" class="card hidden">
+  <h2 id="formTitle">Tambah Player</h2>
+
+  <form id="form" class="stack">
+    <div class="row">
+      <input id="name" class="input" placeholder="Nama" required>
+      <input id="age" class="input" type="text" placeholder="Umur" required>
     </div>
 
-    <form id="form" style="margin-top:12px;display:grid;gap:10px;max-width:780px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <input id="name" class="input" placeholder="Nama Lengkap" required>
-        <input id="age" class="input" placeholder="Umur (angka)" required>
-      </div>
+    <div class="row">
+      <input id="team" class="input" placeholder="Tim" required>
+      <input id="nickname" class="input" placeholder="Nickname" required>
+    </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <input id="team" class="input" placeholder="Tim (wajib) contoh: BOG 7SAVAGE" required>
-        <input id="nickname" class="input" placeholder="Nickname">
-      </div>
+    <div class="row">
+      <input id="pubg_id" class="input" placeholder="ID PUBG">
+      <input id="manager" class="input" placeholder="Pengurus" required>
+    </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <input id="pubg_id" class="input" placeholder="ID PUBG">
-        <input id="manager" class="input" placeholder="Pengurus">
-      </div>
+    <div class="row">
+      <input id="wa" class="input" placeholder="Nomor WhatsApp" required>
+      <select id="status" class="input">
+        <option value="Aktif">Aktif</option>
+        <option value="Cadangan">Cadangan</option>
+        <option value="Trial">Trial</option>
+        <option value="Nonaktif">Nonaktif</option>
+      </select>
+    </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <select id="status" class="input">
-          <option value="Active">Member</option>
-          <option value="Trial">Trial</option>
-        </select>
-        <button class="btn btn--pri" id="submitBtn" type="submit">Simpan</button>
-      </div>
+    <button class="btn btn--pri" type="submit">Simpan</button>
+    <div id="msg" class="muted"></div>
+  </form>
+</section>
 
-      <div class="muted" id="msg"></div>
-    </form>
+<!-- LIST -->
+<section id="listBox" class="card hidden">
+  <h2>Data Player</h2>
+  <div class="tableWrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Nama</th><th>Umur</th><th>Tim</th><th>Nickname</th>
+          <th>ID PUBG</th><th>Pengurus</th><th>WA</th><th>Status</th><th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody id="list"></tbody>
+    </table>
   </div>
-
-  <!-- LIST -->
-  <div id="listBox" class="card hidden">
-    <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center">
-      <h3 style="margin:0">Data Player</h3>
-      <div class="muted" id="listMsg">0 item</div>
-    </div>
-
-    <div class="table-wrap" style="margin-top:12px">
-      <table class="roster">
-        <thead>
-          <tr>
-            <th>Nama</th>
-            <th>Umur</th>
-            <th>Tim</th>
-            <th>Nickname</th>
-            <th>ID PUBG</th>
-            <th>Pengurus</th>
-            <th>Status</th>
-            <th style="width:180px">Aksi</th>
-          </tr>
-        </thead>
-        <tbody id="tbodyAdmin">
-          <tr><td colspan="8" class="muted" style="padding:14px">Loading...</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+</section>
 
 </main>
 

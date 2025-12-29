@@ -1,3 +1,4 @@
+/* wrapper tabel */
 .table-wrap{
   width: 100%;
   overflow-x: auto;
@@ -7,10 +8,11 @@
   background: rgba(255,255,255,.03);
 }
 
+/* tabel roster */
 table.roster{
   width: 100%;
   border-collapse: collapse;
-  min-width: 920px; /* biar HP bisa geser */
+  min-width: 1000px; /* biar HP bisa geser */
 }
 
 table.roster thead th{
@@ -28,7 +30,7 @@ table.roster thead th{
 table.roster tbody td{
   padding: 12px 14px;
   border-bottom: 1px solid rgba(255,255,255,.06);
-  vertical-align: top;
+  vertical-align: middle;
   color: #e5e7eb;
 }
 
@@ -36,15 +38,37 @@ table.roster tbody tr:hover{
   background: rgba(255,255,255,.03);
 }
 
-.badge{
-  display:inline-flex;
+/* =========================
+   FIX UTAMA: BADGE DI TABLE
+   =========================
+   Karena di style.css kamu ada .badge { position:absolute; top/right... }
+   maka kita override khusus badge yang ada di dalam table.roster
+*/
+table.roster td .badge{
+  position: static !important;
+  top: auto !important;
+  right: auto !important;
+  left: auto !important;
+  bottom: auto !important;
+  inset: auto !important;
+  transform: none !important;
+  float: none !important;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 4px 10px;
   border-radius: 999px;
   font-size: 12px;
+  line-height: 1;
+
   border: 1px solid rgba(255,255,255,.10);
   background: rgba(255,255,255,.04);
+
+  white-space: nowrap;
 }
 
-.badge--active{ border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.10); }
-.badge--trial{ border-color: rgba(59,130,246,.35); background: rgba(59,130,246,.10); }
-.badge--inactive{ border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.10); }
+/* Variant warna badge */
+table.roster td .badge--active{ border-color: rgba(34,197,94,.35); background: rgba(34,197,94,.10); }
+table.roster td .badge--trial{ border-color: rgba(59,130,246,.35); background: rgba(59,130,246,.10); }
+table.roster td .badge--inactive{ border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.10); }

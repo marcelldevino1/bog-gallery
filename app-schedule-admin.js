@@ -137,8 +137,8 @@ async function refreshList() {
         <div class="muted"><b>Fee:</b> Rp ${formatMoney(r.fee)} • <b>Prize:</b> Rp ${formatMoney(r.prizepool)}</div>
       </div>
       <div style="display:flex;gap:8px;flex-wrap:wrap">
-        <button class="btn" type="button" data-edit="${r.id}">Edit</button>
-        <button class="btn" type="button" data-del="${r.id}">Hapus</button>
+        <button class="btn btn--sm btn--edit" type="button" data-edit="${r.id}">Edit</button>
+        <button class="btn btn--sm btn--danger" type="button" data-del="${r.id}">Hapus</button>
       </div>
     </div>
   `
