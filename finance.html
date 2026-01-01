@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Keuangan Clan - BOG</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <style>
+    .card{border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:18px;padding:14px}
+    .hidden{display:none!important}
+    .toolbar{display:flex;gap:10px;justify-content:space-between;align-items:center}
+    .table-wrap{overflow:auto;border-radius:16px;border:1px solid var(--line)}
+    table{width:100%;border-collapse:collapse;min-width:1200px}
+    th,td{padding:10px;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+    th{font-size:12px;color:rgba(255,255,255,.7)}
+    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+    .kpi{border:1px solid var(--line);border-radius:16px;padding:12px}
+    .fbadge{display:inline-flex;align-items:center;justify-content:center;padding:4px 10px;border-radius:999px;font-size:12px;line-height:1}
+    .fbadge--in{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.25)}
+    .fbadge--out{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.25)}
+    .muted{color:rgba(255,255,255,.65)}
+
+    /* tombol kecil */
+    .btn--sm{padding:6px 10px;font-size:12px}
+    .btn--danger{background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.35);color:#fecaca}
+    .btn--danger:hover{background:rgba(239,68,68,.2)}
+
+    /* Modal popup */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.55);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:9999;
+      padding:18px;
+    }
+    .modal-backdrop.show{display:flex;}
+    .modal{
+      width:min(520px, 100%);
+      border:1px solid var(--line);
+      background:rgba(20,25,35,.92);
+      backdrop-filter: blur(10px);
+      border-radius:18px;
+      padding:14px;
+      box-shadow:0 20px 70px rgba(0,0,0,.45);
+    }
+    .modal h3{margin:0 0 6px 0;}
+    .modal .actions{display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;margin-top:12px;}
+    .modal .box{border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:10px;background:rgba(255,255,255,.03);}
+
+    /* Toast */
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background:rgba(15,18,25,.92);
+      border:1px solid rgba(255,255,255,.12);
+      color:#e5e7eb;
+      padding:10px 12px;
+      border-radius:999px;
+      z-index:10000;
+      display:none;
+      backdrop-filter: blur(10px);
+      box-shadow:0 10px 40px rgba(0,0,0,.35);
+      font-size:13px;
+    }
+    .toast.show{display:block;}
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+      <div>
+        <h1>Keuangan BOG</h1>
+        <div class="muted">Saldo Brutal Of Genesis</div>
+      </div>
+    <div style="display:flex;gap:10px">
+        <a href="index.html" class="btn">Gallery</a>
+      <a href="roster.html" class="btn">Roster</a>
+      <a href="schedule.html" class="btn">Jadwal</a>
+      <a href="finance-add.html" class="btn btn--pri hidden" id="btnAdd">Tambah Catatan</a>
+      <button class="btn hidden" id="logout">Logout</button>
+    </div>
+  </div>
+</header>
+
+<main class="container main" style="display:grid;gap:14px">
+
+  <!-- LOGIN -->
+  <section id="loginBox" class="card">
+    <b>Login Keuangan</b>
+    <div style="display:grid;gap:10px;max-width:420px;margin-top:10px">
+      <input id="displayName" class="input" placeholder="Nama (untuk riwayat)">
+      <input id="email" class="input" placeholder="Email" type="email">
+      <input id="password" class="input" placeholder="Password" type="password">
+      <button id="loginBtn" class="btn btn--pri" type="button">Login</button>
+      <div class="muted" id="loginMsg"></div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboardBox" class="hidden" style="display:grid;gap:14px">
+
+    <!-- SUMMARY -->
+    <section class="card">
+      <div class="summary">
+        <div class="kpi"><div class="muted">Pemasukan</div><b id="sumIn">Rp 0</b></div>
+        <div class="kpi"><div class="muted">Pengeluaran</div><b id="sumOut">Rp 0</b></div>
+        <div class="kpi"><div class="muted">Saldo</div><b id="balance">Rp 0</b></div>
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section class="card">
+      <div class="toolbar">
+        <b>Riwayat Transaksi</b>
+        <span class="muted" id="stats">0 item</span>
+      </div>
+
+      <div class="table-wrap" style="margin-top:12px">
+        <table>
+          <thead>
+            <tr>
+              <th>Tanggal</th>
+              <th>Tim</th>
+              <th>Jenis</th>
+              <th>Nominal</th>
+              <th>Kategori</th>
+              <th>Keterangan</th>
+              <th>Nama</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </section>
+</main>
+
+<!-- MODAL KONFIRMASI DELETE -->
+<div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <h3 id="modalTitle">Hapus transaksi?</h3>
+    <div class="muted">Transaksi ini akan dihapus permanen dari database.</div>
+
+    <div class="box" style="margin-top:10px">
+      <div class="muted" style="font-size:12px">Preview</div>
+      <div id="modalPreview" style="margin-top:6px"></div>
+    </div>
+
+    <div class="actions">
+      <button id="modalCancel" class="btn" type="button">Batal</button>
+      <button id="modalConfirm" class="btn btn--danger" type="button">Hapus</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<script type="module" src="app-finance.js"></script>
+
+<style>
+    /* ===== FINANCE RESPONSIVE FIX (HP) ===== */
+
+/* biar container gak terlalu sempit */
+@media (max-width: 720px){
+  .container{ padding-left: 14px; padding-right: 14px; }
+  .headerin{ gap: 10px; align-items: flex-start; }
+  .headerin > div{ flex-wrap: wrap; }
+}
+
+/* summary: 3 kolom di desktop, jadi 1 kolom di HP */
+.summary{
+  display:grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+@media (max-width: 720px){
+  .summary{ grid-template-columns: 1fr; }
+  .kpi{ padding: 14px; }
+  .kpi b{ font-size: 18px; }
+}
+
+/* toolbar/tombol header: biar gak kecil */
+@media (max-width: 720px){
+  .toolbar{ flex-direction: column; align-items: flex-start; }
+  .toolbar .muted{ margin-left: 0; }
+}
+
+/* IMPORTANT: jangan bikin table "memaksa" layout ikut mengecil */
+.table-wrap{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* di desktop boleh min-width besar, di HP turunin supaya tidak shrink */
+table{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* desktop */
+@media (min-width: 721px){
+  table{ min-width: 1200px; }
+}
+
+/* mobile: cukup min-width ringan supaya bisa scroll tapi UI gak mengecil */
+@media (max-width: 720px){
+  table{ min-width: 760px; }  /* boleh kamu adjust 680-820 */
+  th, td{ padding: 12px 12px; font-size: 13px; }
+  .card{ padding: 14px; }
+}
+
+</style>
+</body>
+</html>

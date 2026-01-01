@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Tambah Catatan</title>
+  <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+</head>
+<body>
+
+<header>
+  <div class="container headerin">
+    <a class="brand" href="index.html">
+      <img src="assets/logo.png" class="logo" alt="Logo BOG">
+    <h1>Tambah Catatan</h1>
+    <a href="finance.html" class="btn">← Kembali</a>
+  </div>
+</header>
+
+<main class="container main">
+  <form id="form" class="card" style="display:grid;gap:10px">
+    <input id="team" class="input" placeholder="Nama Tim" required>
+    <select id="type" class="input">
+      <option value="IN">Pemasukan</option>
+      <option value="OUT">Pengeluaran</option>
+    </select>
+    <input id="amount" class="input" type="number" placeholder="Nominal" required>
+    <input id="category" class="input" placeholder="Kategori (FT, Event, Qualif.....)">
+    <input id="desc" class="input" placeholder="Keterangan (Opsional)">
+    <button class="btn btn--pri">Simpan</button>
+    <div class="muted" id="msg"></div>
+  </form>
+</main>
+
+<script type="module" src="app-finance-add.js"></script>
+</body>
+</html>
